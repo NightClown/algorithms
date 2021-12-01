@@ -40,14 +40,20 @@ class Solution {
         char[] c = s.toCharArray();
         StringBuilder newStr = new StringBuilder();
         for (int i = 0; i < c.length; i++) {
-            if(Character.isLowerCase(c[i])){
-                newStr.append(Character.isLowerCase(c[i]));
-            } else if(Character.isDigit(c[i])) {
+            if (c[i] >= 'A' && c[i] <= 'Z') {
+                c[i]+=32;
+                newStr.append(c[i]);
+            } else if (Character.isDigit(c[i]) || (c[i] >= 'a' && c[i] <= 'z')) {
                 newStr.append(c[i]);
             }
         }
-        System.out.println(newStr);
-
+        System.out.println(newStr.toString());
+        for (int j = 0; j < newStr.length() / 2; j++) {
+            if (newStr.charAt(j) != newStr.charAt(newStr.length() - 1 - j)) {
+                return false;
+            }
+        }
+        return true;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
